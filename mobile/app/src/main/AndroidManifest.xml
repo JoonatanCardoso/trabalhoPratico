@@ -16,7 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".MainActivity"></activity>
+=======
+        <activity android:name=".TelaFuncionario" />
+        <activity android:name=".TelaFuncionarioAdd" />
+        <activity android:name=".TelaFuncionarioADM"></activity>
+>>>>>>> f22ca4dca490ce6d791c1ef80b1ef159bb490178
     </application>
 
 </manifest>
