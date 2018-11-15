@@ -13,8 +13,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:ems="10"
+        android:hint="Nome"
         android:inputType="textPersonName"
-        android:text="Nome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,8 +25,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="CNH"
         android:inputType="textPersonName"
-        android:text="CNH"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textNome" />
 
@@ -37,8 +37,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="CPF"
         android:inputType="textPersonName"
-        android:text="CPF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textCnh" />
 
@@ -49,8 +49,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="RG"
         android:inputType="textPersonName"
-        android:text="RG"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textCpf" />
 
@@ -61,8 +61,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="Endereço"
         android:inputType="textPersonName"
-        android:text="Endereço"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textRg" />
 
@@ -73,8 +73,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="Nº"
         android:inputType="none|text|textPersonName"
-        android:text="Nº"
         app:layout_constraintStart_toEndOf="@+id/textEnd"
         app:layout_constraintTop_toBottomOf="@+id/textRg" />
 
@@ -85,8 +85,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="Cidade"
         android:inputType="textPersonName"
-        android:text="Cidade"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textEnd" />
 
@@ -97,8 +97,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:ems="10"
+        android:hint="Estado"
         android:inputType="textPersonName"
-        android:text="Estado"
         app:layout_constraintStart_toEndOf="@+id/textCidade"
         app:layout_constraintTop_toBottomOf="@+id/textNumero" />
 
