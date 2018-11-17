@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Cadastro de cliente</title>
+  <link rel="icon" 
+      type="image/jpg" 
+      href="rs.jpg" />
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+        <nav>
+          <div class="nav-wrapper blue">
+              <a href="#" class="brand-logo center">CADASTRO DE CLIENTE</a>
+          </div>
+        </nav>
+      </div>
+      <div align="center">
+      <form>
+      <div id="conteudo" style="width: 70%">
+       <div class="row">
+          <div class="col s12">
+            <div class="row">
+              <div style="margin-top: 50px" class="input-field col s12">
+               <i class="material-icons prefix">person</i>
+               <input type="text" id="autocomplete-nome" class="autocomplete">
+               <label for="autocomplete-input">NOME</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+               <i class="material-icons prefix">create</i>
+               <input type="text" id="autocomplete-rg" maxlength="11" onkeypress="formatar('###.###.###', this)" class="autocomplete">
+               <label for="autocomplete-input">RG</label>
+              </div>
+              <div class="input-field col s6">
+               <i class="material-icons prefix">create</i>
+               <input type="text" id="autocomplete-cpf" maxlength="15" onkeypress="formatar('###.###.###-##', this)" class="autocomplete">
+               <label for="autocomplete-input">CPF</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+           <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">drive_eta</i>
+                <input type="text" id="autocomplete-cnh" class="autocomplete">
+                <label for="autocomplete-input">CNH</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">face</i>
+                <input type="text" id="autocomplete-dependente" class="autocomplete">
+                <label for="autocomplete-input">Número de dependentes</label>
+              </div>
+           </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+           <div class="row">
+              <div class="input-field col s8">
+                <i class="material-icons prefix">place</i>
+                <input type="text" id="autocomplete-rua" class="autocomplete">
+                <label for="autocomplete-input">Rua</label>
+              </div>
+              <div class="input-field col s4">
+                <i class="material-icons prefix">filter_9_plus</i>
+                <input type="text" id="autocomplete-numero" class="autocomplete">
+                <label for="autocomplete-input">Número</label>
+              </div>
+           </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+           <div class="row">
+              <div class="input-field col s8">
+                <i class="material-icons prefix">place</i>
+                <input type="text" id="autocomplete-bairro" class="autocomplete">
+                <label for="autocomplete-input">Bairro</label>
+              </div>
+              <div class="input-field col s4" style="margin-bottom: 50px;" >
+                <i class="material-icons prefix">place</i>
+                <input type="text" id="autocomplete-cep" class="autocomplete" maxlength="9" onkeypress="formatar('#####-###', this)">
+                <label for="autocomplete-input">CEP</label>
+              </div>
+
+              <div id="botoes" >
+                <a id="btnSalvar"class="btn blue" ><i class="material-icons right">check</i>SALVAR</a>
+                <button type="reset" value="Limpar" id="btnLimpar"class="btn blue" type="reset" style="margin-left: 15px">
+                  <i class="material-icons right">close</i> LIMPAR
+                </button>
+                <a data-target="modal1" id="btnConsultar"  class="btn modal-trigger blue" style="margin-left: 15px"><i class="material-icons right">search</i>CONSULTAR</a>
+              </div>
+           </div>
+          </div>
+        </div>
+
+      </div>
+      
+
+      </form>
+    </div>
+      <br><br>
+
+      <div id ="rodape" style="margin-top: 7px">
+         <footer class="page-footer blue" >
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">LOCAPLUS</h5>
+                <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porttitor posuere neque, tempor pellentesque lorem semper vel. Etiam non vulputate ex. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam consequat eleifend orci, at dictum augue suscipit gravida.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">REDES SOCIAIS</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Instagram</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Linkedin</a></li>
+                </ul>
+              </div>
+            </div>
+            <br><br><br>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2018 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">INICIO</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+     <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <div class="row">
+          <div class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+               <i class="material-icons prefix">search</i>
+               <input type="text" id="autocomplete-input" class="autocomplete">
+               <label for="autocomplete-input">NOME</label>
+              </div>
+            </div>
+          </div>
+        </div>
+          <table class="highlight centered">
+        <thead>
+          <tr>
+              <th>NOME</th>
+              <th>CPF</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>ALINE</td>
+            <td>049.461.811-64</td>
+          </tr>
+          <tr>
+            <td>ALINE</td>
+            <td>049.461.811-64</td>
+          </tr>
+          <tr>
+            <td>ALINE</td>
+            <td>049.461.811-64</td>
+          </tr>
+          <tr>
+            <td>ALINE</td>
+            <td>049.461.811-64</td>
+          </tr>
+          <tr>
+            <td>ALINE</td>
+            <td>049.461.811-64</td>
+          </tr>
+          <tr>
+            <td>ALINE</td>
+            <td>049.461.811-64</td>
+          </tr>
+          <tr>
+            <td>ALINE</td>
+            <td>049.461.811-64</td>
+          </tr>
+          <tr>
+            <td>ALINE</td>
+            <td>049.461.811-64</td>
+          </tr>
+        </tbody>
+      </table>
+        </div>
+        <div class="modal-footer">
+          
+        </div>
+  
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+    $('.modal').modal();
+    });
+  </script>
+  <script>
+    function formatar(mascara, documento){
+      var i = documento.value.length;
+      var saida = mascara.substring(0,1);
+      var texto = mascara.substring(i)
+      
+      if (texto.substring(0,1) != saida){
+                documento.value += texto.substring(0,1);
+      }
+      
+    }
+</script>
+  </body>
+</html>
