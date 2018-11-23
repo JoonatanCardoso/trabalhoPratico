@@ -1,9 +1,10 @@
+<?php require_once 'php_action/db_connect.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Mate rialize</title>
+  <title>Starter Template - Materialize</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,6 +12,10 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
   <style>
+      .scrollss{
+          overflow-y: auto;
+          height: 440px;
+      }
   th{
     text-align: center;
   }
@@ -39,25 +44,29 @@
 
   </div>
 
-  <div class="container">
-    <div class="section center">
 
-              <form class="col s12">
-                <div class="row">
-                  <div class="input-field col s10 offset-s1 ">
-                    <i class="material-icons prefix blue-text">search</i>
-                    <input id="icon_prefix" type="text" class="validate ">
-                    <label class="" for="icon_prefix"></label>
-                  </div>
 
-                </div>
-              </form>
+
+  <div class="container center">
+
+      <form class="col s12">
+          <div class="row">
+              <div class="input-field col s10 offset-s1 ">
+                  <i class="material-icons prefix blue-text">search</i>
+                  <input id="icon_prefix" name="name" type="text" class="validate search ">
+                  <label class="" for="icon_prefix"></label>
+              </div>
+
+          </div>
+      </form>
 
 
       <!--   Icon Section   -->
       CPF, RG, seu
       nome, seu endereço e seu cargo.
-      <table class="highlight center">
+    <div class="section center scrollss">
+
+      <table class="highlight center scrollss">
         <thead>
         <tr>
           <th>Name</th>
@@ -66,13 +75,25 @@
         </tr>
         </thead>
 
-        <tbody>
+        <tbody class="tableAuto">
+        <?php
+        $sql = "SELECT * FROM funcionario ";
+        $result = $connect->query($sql);
+
+        if($result->num_rows > 0) {
+
+            while ($row = $result->fetch_assoc()) {
+
+                echo "
         <tr>
-          <td>Alvin</td>
-          <td>Eclair</td>
-          <td> <a href="#modalVisualizar"  class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="bottom" data-tooltip="Visualizar"><i class="material-icons">contacts</i></a></td>
-        </tr>
-        <tr>
+          <td>".$row['NOME']."</td>
+          <td>".$row['CARGO']."</td>
+          <td> <a  class='btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger botaover' data-id='{$row['id']}' data-position='bottom' data-tooltip='Visualizar'><i class='material-icons'>contacts</i></a></td>
+        </tr>";
+
+            }
+        } ?>
+       <!-- <tr>
           <td>Alan</td>
           <td>Jellybean</td>
           <td> <a href="#modalVisualizar" class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="bottom" data-tooltip="Visualizar"><i class="material-icons">contacts</i></a></td>
@@ -81,7 +102,7 @@
           <td>Jonathan</td>
           <td>Lollipop</td>
           <td> <a href="#modalVisualizar" class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="bottom" data-tooltip="Visualizar"><i class="material-icons">contacts</i></a></td>
-        </tr>
+        </tr>-->
         </tbody>
       </table>
     </div>
@@ -89,8 +110,8 @@
   </div>
   <!-- Modal Structure -->
 
-   <div id="modalVisualizar" class="modal">
-     <div class="modal-content center">
+   <div id="modalVisualizar" class="modal  visualizar">
+  <!--   <div class="modal-content center">
        <h4>Funcionario</h4>
        <p>Perfil do Funcionario</p>
        <div class="row">
@@ -137,7 +158,7 @@
       </div>
     </form>
   </div>
-     </div>
+     </div>-->
 
    </div>
 
@@ -169,6 +190,75 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script>
+      $('.botaover').click(function (){
+          console.log($(this).data('id'));
+          $.ajax({
+              method: "POST",
+              url: "php_action/vizualizarComun.php",
+              data: { id: $(this).data('id') }
+          }).done(function( html ) {
+              var instance = M.Modal.getInstance($("#modalVisualizar"));
+              console.log(html);
+              instance.open();
+
+              $('.visualizar').html(html);
+
+          });
+      });
+      $(document).ready(function(){
+          $('.search').keyup(function () {
+              console.log(this.value);
+              $.ajax({
+                  'async': false,
+                  'type': "POST",
+                  'global': false,
+                  'dataType': 'html',
+                  'url': "php_action/autoComplitComun.php",
+                  'data': { 'name': this.value },
+                  'success': function (data) {
+                      console.log("sucesso!"+data);
+
+                  }
+              }).done(function( html1 ) {
+                  $('.tableAuto').html(html1);
+                  console.log(html1);
+                  $('.botaover').click(function (){
+                      console.log($(this).data('id'));
+                      $.ajax({
+                          method: "POST",
+                          url: "php_action/vizualizarComun.php",
+                          data: { id: $(this).data('id') }
+                      }).done(function( html ) {
+                          var instance = M.Modal.getInstance($("#modalVisualizar"));
+                          console.log(html);
+                          instance.open();
+
+                          $('.visualizar').html(html);
+
+                      });
+                  });
+
+
+                  /*   $('.divDetalhes').click(function (){
+                         console.log($(this).data('id'));
+                         $.ajax({
+                             method: "POST",
+                             url: "php_action/listaEmpresa.php",
+                             data: { id: $(this).data('id') }
+                         }).done(function( html ) {
+                             var instance = M.Tabs.getInstance($(".tabs"));
+                             console.log(instance);
+                             instance.select("test1");
+                             $('.result').html(html);
+                         });
+                     });*/
+              });
+          });
+
+
+      });
+
+
   $(document).ready(function(){
   $('.tooltipped').tooltip();
   $('.modal').modal();

@@ -1,9 +1,10 @@
+<?php require_once 'php_action/db_connect.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize </title>
+  <title>Starter Template - Materialize</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,6 +12,10 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
   <style>
+      .scrollss{
+          overflow-y: auto;
+          height: 440px;
+      }
   th{
     text-align: center;
   }
@@ -39,29 +44,32 @@
 
   </div>
 
-  <div class="container">
-    <div class="section center">
+  <div class="container center">
 
-              <form class="col s12">
-                <div class="row">
-                  <div class="input-field col s7 offset-s2 ">
-                    <i class="material-icons prefix blue-text">search</i>
-                    <input id="icon_prefix" type="text" class="validate ">
-                    <label class="" for="icon_prefix"></label>
-                  </div>
-                  <div class="input-field col s3 ">
+      <form class="col s12">
+          <div class="row">
+              <div class="input-field col s7 offset-s2 ">
+                  <i class="material-icons prefix blue-text">search</i>
+                  <input id="icon_prefix" name="name" type="text" class="validate search ">
+                  <label class="" for="icon_prefix"></label>
+              </div>
+              <div class="input-field col s3 ">
 
-                   <a href="#modalCadastro" class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="bottom" data-tooltip="Cadastrar Funcionario"><i class="material-icons">add</i></a><label class="right">Cadastrar</label>
+                  <a href="#modalCadastro" class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="bottom" data-tooltip="Cadastrar Funcionario"><i class="material-icons">add</i></a><label class="right">Cadastrar</label>
 
-                  </div>
-                </div>
-              </form>
+              </div>
+          </div>
+      </form>
+
+      CPF, RG, seu
+      nome, seu endereço e seu cargo.
+    <div class="section center scrollss">
+
 
 
       <!--   Icon Section   -->
-      CPF, RG, seu
-      nome, seu endereço e seu cargo.
-      <table class="highlight center">
+
+      <table class="highlight  scrollss ">
         <thead>
         <tr>
           <th>Name</th>
@@ -70,28 +78,26 @@
         </tr>
         </thead>
 
-        <tbody>
+        <tbody class="scrollss tableAuto">
+        <?php
+        $sql = "SELECT * FROM funcionario WHERE datademissao is null";
+        $result = $connect->query($sql);
+
+        if($result->num_rows > 0) {
+
+            while ($row = $result->fetch_assoc()) {
+
+                echo "
         <tr>
-          <td>Alvin</td>
-          <td>Eclair</td>
-          <td><a  href="#modalVisualizar"  class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="bottom" data-tooltip="Visualizar"><i class="material-icons">contacts</i></a>
-            <a  href="#modalVisualizar"  class="btn-floating btn-small waves-effect waves-light orange tooltipped modal-trigger" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-            <a href="#modalVisualizar"class="btn-floating btn-small waves-effect waves-light red tooltipped modal-trigger" data-position="bottom" data-tooltip="Demitir"><i class="material-icons">delete</i></a></td>
-        </tr>
-        <tr>
-          <td>Alan</td>
-          <td>Jellybean</td>
-          <td> <a  href="#modalVisualizar"  class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="bottom" data-tooltip="Visualizar"><i class="material-icons">contacts</i></a>
-            <a  href="#modalVisualizar"  class="btn-floating btn-small waves-effect waves-light orange tooltipped modal-trigger" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-            <a href="#modalVisualizar"class="btn-floating btn-small waves-effect waves-light red tooltipped modal-trigger" data-position="bottom" data-tooltip="Demitir"><i class="material-icons">delete</i></a></td>
-          </tr>
-        <tr>
-          <td>Jonathan</td>
-          <td>Lollipop</td>
-          <td> <a  href="#modalVisualizar"  class="btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger" data-position="bottom" data-tooltip="Visualizar"><i class="material-icons">contacts</i></a>
-            <a  href="#modalEditar"  class="btn-floating btn-small waves-effect waves-light orange tooltipped modal-trigger" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-            <a href="#modalDemitir"class="btn-floating btn-small waves-effect waves-light red tooltipped modal-trigger" data-position="bottom" data-tooltip="Demitir"><i class="material-icons">delete</i></a></td>
-          </tr>
+          <td>".$row['NOME']."</td>
+          <td>".$row['CARGO']."</td>
+          <td><a   class='btn-floating btn-small waves-effect waves-light blue tooltipped modal-trigger botaover' data-id='{$row['id']}' data-position='bottom' data-tooltip='Visualizar'><i class='material-icons'>contacts</i></a>
+            <a    class='btn-floating btn-small waves-effect waves-light orange tooltipped modal-trigger botaoedit' data-id='{$row['id']}' data-position='bottom' data-tooltip='Editar'><i class='material-icons'>edit</i></a>
+            <a  class='btn-floating btn-small waves-effect waves-light red tooltipped modal-trigger botaodemitir'  data-id='{$row['id']}' data-position='bottom' data-tooltip='Demitir'><i class='material-icons'>delete</i></a></tr>";
+
+            }
+        } ?>
+
         </tbody>
       </table>
     </div>
@@ -99,48 +105,48 @@
   </div>
 
   <!-- Modal Structure -->
-   <div id="modalCadastro" class="modal">
+   <div id="modalCadastro" class="modal ">
      <div class="modal-content center">
          <h4>Cadastrar Funcionario</h4>
          <p>Formulario de Admissao</p>
          <div class="row">
-      <form class="col s12">
+      <form class="col s12 " action="php_action/createFuncionario.php" method="post">
         <div class="row">
           <div class="input-field col s6">
-            <input placeholder="CPF " id="cpf" type="text" class="validate">
+            <input placeholder="CPF " id="cpf" name="cpf" type="text" class="validate">
             <label for="cpf"></label>
           </div>
           <div class="input-field col s6">
-            <input id="rg"placeholder="RG "  type="text" class="validate">
+            <input id="rg"placeholder="RG " name="rg" type="text" class="validate">
             <label for="rg"></label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input placeholder="Nome Completo"  id="nome" type="text" class="validate">
+            <input placeholder="Nome Completo"  id="nome" name="nome" type="text" class="validate">
             <label for="nome"></label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input id="endereco"placeholder="Endereco" type="text" class="validate">
+            <input id="endereco"placeholder="Endereco" name="endereco" type="text" class="validate">
             <label for="endereco"></label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s6">
-            <input id="cargo" placeholder="Cargo" type="text" class="validate">
+            <input id="cargo" placeholder="Cargo"  name="cargo" type="text" class="validate">
             <label for="cargo"></label>
           </div>
           <div class="input-field col s6">
-            <input id="dataAdimissao" placeholder="Data de Admissao" type="text" class="validate">
+            <input id="dataAdimissao" placeholder="Data de Admissao" name="dataAdmissao" type="text" class="validate">
             <label for="dataAdimissao"></label>
           </div>
         </div>
         <div class="row center">
           <div class=" col s12">
-            <a class="waves-effect waves-light btn green">Salvar</a>
-            <a class="waves-effect waves-light btn red">Fechar</a>
+            <button class="waves-effect waves-light btn green" type="submit">Salvar</button>
+            <a href='FuncionarioSupervisor.php'  class="waves-effect waves-light btn red">Fechar</a>
           </div>
 
 
@@ -151,8 +157,8 @@
    </div>
 
 
-   <div id="modalDemitir" class="modal">
-     <div class="modal-content center">
+   <div id="modalDemitir" class="modal demitir">
+    <!-- <div class="modal-content center">
          <h4>Funcionario</h4>
          <p>Formulario de Demissao</p>
          <div class="row">
@@ -178,13 +184,13 @@
         </div>
       </form>
     </div>
-    </div>
+    </div>-->
    </div>
 
 
 
-   <div id="modalEditar" class="modal">
-     <div class="modal-content center">
+   <div id="modalEditar" class="modal editar ">
+    <!-- <div class="modal-content center">
          <h4> Funcionario</h4>
          <p>Formulario de Edicao de dados do Funcionario</p>
          <div class="row">
@@ -231,12 +237,12 @@
         </div>
       </form>
     </div>
-    </div>
+    </div>-->
    </div>
 
 
-   <div id="modalVisualizar" class="modal">
-     <div class="modal-content center">
+   <div id="modalVisualizar" class="modal visualizar">
+  <!--   <div class="modal-content center">
        <h4>Funcionario</h4>
        <p>Perfil do Funcionario</p>
        <div class="row">
@@ -283,7 +289,7 @@
       </div>
     </form>
   </div>
-     </div>
+     </div>-->
 
    </div>
 
@@ -316,6 +322,141 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script>
+      $('.botaover').click(function (){
+          console.log($(this).data('id'));
+          $.ajax({
+              method: "POST",
+              url: "php_action/vizualizar.php",
+              data: { id: $(this).data('id') }
+          }).done(function( html ) {
+              var instance = M.Modal.getInstance($("#modalVisualizar"));
+              console.log(html);
+              instance.open();
+
+              $('.visualizar').html(html);
+
+          });
+      });
+
+      $('.botaoedit').click(function (){
+          console.log($(this).data('id'));
+          $.ajax({
+              method: "POST",
+              url: "php_action/editar.php",
+              data: { id: $(this).data('id') }
+          }).done(function( html ) {
+              var instance = M.Modal.getInstance($("#modalEditar"));
+              console.log(html);
+              instance.open();
+
+              $('.editar').html(html);
+
+          });
+      });
+
+
+      $('.botaodemitir').click(function (){
+          console.log($(this).data('id'));
+          $.ajax({
+              method: "POST",
+              url: "php_action/demitir.php",
+              data: { id: $(this).data('id') }
+          }).done(function( html ) {
+              var instance = M.Modal.getInstance($("#modalDemitir"));
+              console.log(html);
+              instance.open();
+
+              $('.demitir').html(html);
+
+          });
+      });
+
+
+      $(document).ready(function(){
+          $('.search').keyup(function () {
+              console.log(this.value);
+              $.ajax({
+                  'async': false,
+                  'type': "POST",
+                  'global': false,
+                  'dataType': 'html',
+                  'url': "php_action/autoComplit.php",
+                  'data': { 'name': this.value },
+                  'success': function (data) {
+                      console.log("sucesso!"+data);
+
+                  }
+              }).done(function( html1 ) {
+                  $('.tableAuto').html(html1);
+                  console.log(html1);
+                  $('.botaover').click(function (){
+                      console.log($(this).data('id'));
+                      $.ajax({
+                          method: "POST",
+                          url: "php_action/vizualizar.php",
+                          data: { id: $(this).data('id') }
+                      }).done(function( html ) {
+                          var instance = M.Modal.getInstance($("#modalVisualizar"));
+                          console.log(html);
+                          instance.open();
+
+                          $('.visualizar').html(html);
+
+                      });
+                  });
+
+                  $('.botaoedit').click(function (){
+                      console.log($(this).data('id'));
+                      $.ajax({
+                          method: "POST",
+                          url: "php_action/editar.php",
+                          data: { id: $(this).data('id') }
+                      }).done(function( html ) {
+                          var instance = M.Modal.getInstance($("#modalEditar"));
+                          console.log(html);
+                          instance.open();
+
+                          $('.editar').html(html);
+
+                      });
+                  });
+
+                  $('.botaodemitir').click(function (){
+                      console.log($(this).data('id'));
+                      $.ajax({
+                          method: "POST",
+                          url: "php_action/demitir.php",
+                          data: { id: $(this).data('id') }
+                      }).done(function( html ) {
+                          var instance = M.Modal.getInstance($("#modalDemitir"));
+                          console.log(html);
+                          instance.open();
+
+                          $('.demitir').html(html);
+
+                      });
+                  });
+
+               /*   $('.divDetalhes').click(function (){
+                      console.log($(this).data('id'));
+                      $.ajax({
+                          method: "POST",
+                          url: "php_action/listaEmpresa.php",
+                          data: { id: $(this).data('id') }
+                      }).done(function( html ) {
+                          var instance = M.Tabs.getInstance($(".tabs"));
+                          console.log(instance);
+                          instance.select("test1");
+                          $('.result').html(html);
+                      });
+                  });*/
+              });
+          });
+
+
+      });
+
+
   $(document).ready(function(){
   $('.tooltipped').tooltip();
   $('.modal').modal();
