@@ -19,18 +19,21 @@
         }
     </style>
 </head>
+
+<!--inicio do corpo do site-->
 <body>
   <nav class="blue" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo center">GERENCIAMENTO DE LOCAÇÃO</a>
     </div>
   </nav>
   <div class="container row">
-    <div class="input-field col s8 offset-s2" style="margin-top: 50px" >
-          <i class="material-icons prefix">search</i>
-          <textarea id="icon_prefix2" class="materialize-textarea" ></textarea>
-          <label for="icon_prefix2">Nome do Cliente</label> 
-        </div>
+      <div class="input-field col s7 offset-s2 " style="margin-top: 50px">
+          <i class="material-icons prefix blue-text">search</i>
+          <input id="icon_prefix" name="name" type="text" class="validate search ">
+          <label class="" for="icon_prefix">Nome do Cliente</label>
+      </div>
 
+      <!--tabela de listagem de locações-->
   <table class="highlight centered">
         <thead>
           <tr>
@@ -41,9 +44,10 @@
           </tr>
         </thead>
 
+        <!--busca informações e lista na tabela-->
         <tbody class="scrollss tableAuto">
         <?php
-        $sql = "SELECT * FROM locacao WHERE DATADEVOLUCAO is null";
+        $sql = "SELECT * FROM locacao ";
         $result = $connect->query($sql);
 
         if($result->num_rows > 0) {
@@ -54,11 +58,14 @@
         <tr>
           <td>".$row['NCLIENTE']."</td>
           <td>".$row['PLACACARRO']."</td>
-          <td>".$row['PRECOLOCACAO']."</td>
+          <td> ".$row['PRECOLOCACAO'];
+                if($row['PRECOLOCACAO']!= null )
+                    echo "<i class=' material-icons tiny green-text'>check</i>";
+                else echo"<i class=' material-icons tiny red-text'>clear</i>"; echo " </td>
            <td>".$row['DATALOCACAO']."</td>
                      <td>
-            <a    class='btn-floating btn-small waves-effect waves-light orange tooltipped modal-trigger botaoedit' data-id='{$row['id']}' data-position='bottom' data-tooltip='Editar'><i class='material-icons'>edit</i></a>
-            <a  class='btn-floating btn-small waves-effect waves-light green tooltipped modal-trigger botaodemitir'  data-id='{$row['id']}' data-position='bottom' data-tooltip='Encerrar'><i class='material-icons'>check</i></a></tr>
+            <a  class='btn-floating btn-small waves-effect waves-light orange tooltipped modal-trigger botaoeditar' data-id='{$row['id']}' data-position='bottom' data-tooltip='Editar'><i class='material-icons'>edit</i></a>
+            <a  class='btn-floating btn-small waves-effect waves-light green tooltipped modal-trigger botaoencerrar'  data-id='{$row['id']}' data-position='bottom' data-tooltip='Encerrar'><i class='material-icons'>check</i></a></tr>
 ";
 
             }
@@ -68,12 +75,13 @@
         </tbody>
       </table>
   </div>
+    <!--botão de cadastrar-->
   <div class="input-field col s8 offset-s2 center" style="margin-top: 50px">
     <a href="#modal1" class="waves-effect waves-light btn-small blue modal-trigger"><i class="material-icons right">add</i>Cadastrar</a>
 
 
   </div>
-  <!-- Modal Structure -->
+  <!-- Modal cadastrar -->
   <div id="modal1" class="modal" style="width: 50%; height: 50%">
     <div class="modal-content" style="padding-bottom: 0px" >
       <h4 class="center">CADASTRO DE LOCAÇÃO</h4>
@@ -97,73 +105,61 @@
               </div>
           </div>
             <div class="row col s12 center">
-                <button class="waves-effect waves-light btn" type="submit green">Salvar</button>
+                <button class="waves-effect waves-light btn green" type="submit ">Salvar</button>
                 <a href="locacao.php" class="waves-effect waves-light btn red">Fechar</a>
 
             </div>
         </form>
        </div>
      </div>
-    </div>
   </div>
-     <div id="modal2" class="modal" style="width: 50%; height: 50%">
-    <div class="modal-content" style="padding-bottom: 0px" >
-      <h4 class="center">EDIÇÃO DE LOCAÇÃO</h4>
-      <hr/> <br>
-      <div class="row">
-      <div class="input-field col s6">
-        <select>
-          <option value="" disabled selected>SELECIONE O CLIENTE</option>
-          <option value="1">MAITAN</option>
-          <option value="2">ALINE</option>
-          <option value="3">FLÁVIO</option>
-          <option value="3">EDUARDO</option>
-          <option value="3">JONATAN</option>
-        </select>
-        </div>
-        <div class="input-field col s6">
-        <select>
-          <option value="" disabled selected>SELECIONE O VEÍCULO</option>
-          <option value="1">GOL</option>
-          <option value="2">HB20</option>
-          <option value="3">OPALA</option>
-          <option value="3">HILLUX</option>
-          <option value="3">DODGE RAM</option>
-        </select>
-        </div>
-        <div class="row">
-        <form class="col s12">
+  <!--modal editar-->
+  <div id="modalEditar" class="modal editar " >
+      <div class="modal-content" style="padding-bottom: 0px" >
+          <h4 class="center">CADASTRO DE LOCAÇÃO</h4>
+          <hr/> <br>
           <div class="row">
-            <div class="input-field col s12">
-              <textarea id="textarea1" class="materialize-textarea"></textarea>
-              <label for="textarea1">QUILOMETRAGEM</label>
-            </div>
+              <form class="col s12" method="post" action="phplocacao/insertlocacao.php">
+                  <div class="row">
+                      <div class="input-field col s6">
+                          <input placeholder="Numero Cliente" name="ncliente"  id="ncliente" type="text" class="validate">
+                          <label for="first_name"></label>
+                      </div>
+                      <div class="input-field col s6">
+                          <input placeholder="Placa do Carro" id="placacarro" type="text" name="placacarro" class="validate">
+                          <label for="last_name"></label>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s12">
+                          <input id="datalocacao" placeholder="Data da Locacao" type="text" name="datalocacao" class="validate">
+                          <label for="last_name"></label>
+                      </div>
+                  </div>
+                  <div class="row col s12 center">
+                      <button class="waves-effect waves-light btn green" type="submit ">Salvar</button>
+                      <a href="locacao.php" class="waves-effect waves-light btn red">Fechar</a>
+
+                  </div>
+              </form>
           </div>
-        </form>
+        </div>
   </div>
-  </div>
-    </div>
-    <div class="row" style="margin-left: 25%">
-    <div class="modal-footer col s6" >
-      <a class="modal-close waves-effect waves-light btn-small blue"><i class="material-icons right">check</i>SALVAR</a>
-      <a class="modal-close waves-effect waves-light btn-small blue"><i class="material-icons right">block</i>CANCELAR</a>
-    </div>
-    </div>
-  </div>
-      <div id="modal3" class="modal" style="width: 50%; height: 50%">
-        <div class="modal-content" style="padding-bottom: 0px" >
+  <!--modal encerrar-->
+  <div id="modalEncerrar" class="modal encerra" >
+      <div class="modal-content" style="padding-bottom: 0px" >
           <h4 class="center">DEVOLUÇÃO DE LOCAÇÃO</h4>
           <div class="row">
-            <div class="input-field col s6">
-              <input placeholder="SELECIONE A DATA" type="text" class="datepicker">
-            </div>
-            <div class="input-field col s6">
-              <textarea id="textarea1" class="materialize-textarea"></textarea>
-              <label for="textarea1">QUILOMENTRAGEM</label>
-            </div>
-        </div>
+              <div class="input-field col s6">
+                  <input placeholder="SELECIONE A DATA" type="text" class="datepicker">
+              </div>
+              <div class="input-field col s6">
+                  <textarea id="textarea1" class="materialize-textarea"></textarea>
+                  <label for="textarea1">QUILOMENTRAGEM</label>
+              </div>
+          </div>
       </div>
-    <br><br>
+      <br><br>
   </div>
 
   <footer class="page-footer blue">
@@ -208,6 +204,86 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script type="text/javascript">
+      // função de pesquisa automática por ajax
+      $(document).ready(function(){
+          $('.search').keyup(function () {
+              console.log(this.value);
+              $.ajax({
+                  'async': false,
+                  'type': "POST",
+                  'global': false,
+                  'dataType': 'html',
+                  'url': "phplocacao/autoComplete.php",
+                  'data': { 'name': this.value },
+                  'success': function (data) {
+                      console.log("sucesso!"+data);
+
+                  }
+                  
+              }).done(function( html1 ) {
+                  $('.tableAuto').html(html1);
+                  console.log(html1);
+                  //pega informações cadastradas e edita (atribui novamente a função do botao)
+                      $('.botaoeditar').click(function (){
+                      console.log($(this).data('id'));
+                      $.ajax({
+                          method: "POST",
+                          url: "phplocacao/editar.php",
+                          data: { id: $(this).data('id') }
+                      }).done(function( html ) {
+                          var instance = M.Modal.getInstance($("#modalEditar"));
+                          console.log(html);
+                          instance.open();
+                          $('.editar').html(html);
+                      });
+                  });
+                  //encerra a locação(atribui novamente a função do botão)
+                  $('.botaoencerrar').click(function (){
+                      console.log($(this).data('id'));
+                      $.ajax({
+                          method: "POST",
+                          url: "phplocacao/encerrar.php",
+                          data: { id: $(this).data('id') }
+                      }).done(function( html ) {
+                          var instances = M.Modal.getInstance($("#modalEncerrar"));
+                          console.log(html);
+                          instances.open();
+                          $('.encerra').html(html);
+                      });
+                  });
+              });
+          });
+      });
+      //pega informações cadastradas e edita
+      $('.botaoeditar').click(function (){
+          console.log($(this).data('id'));
+          $.ajax({
+              method: "POST",
+              url: "phplocacao/editar.php",
+              data: { id: $(this).data('id') }
+          }).done(function( html ) {
+              var instance = M.Modal.getInstance($("#modalEditar"));
+              console.log(html);
+              instance.open();
+              $('.editar').html(html);
+          });
+      });
+      //encera a locação
+      $('.botaoencerrar').click(function (){
+          console.log($(this).data('id'));
+          $.ajax({
+              method: "POST",
+              url: "phplocacao/encerrar.php",
+              data: { id: $(this).data('id') }
+          }).done(function( html ) {
+              var instances = M.Modal.getInstance($("#modalEncerrar"));
+              console.log(html);
+              instances.open();
+
+              $('.encerra').html(html);
+
+          });
+      });
     $(document).ready(function(){
     $('.modal').modal();
   });
@@ -218,9 +294,8 @@
     $('.datepicker').datepicker();
     });
     $(document).ready(function(){
-        $('.tooltipped').tooltip();
+        $('.tooltipped').tooltip();b
     });
   </script>
-
   </body>
 </html>
