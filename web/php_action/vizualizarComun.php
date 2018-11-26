@@ -7,7 +7,7 @@
  */
 require_once "db_connect.php";
 
-if($_POST['id']) {
+if($_POST['id']) {////php  que constroi o modal passando as informacoes do funcionario do Comunpara vizualizar
     $sql = "SELECT * FROM funcionario WHERE id = {$_POST['id']}";
     $result = $connect->query($sql);
     if($result->num_rows > 0) {

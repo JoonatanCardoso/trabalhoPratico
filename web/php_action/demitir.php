@@ -7,7 +7,7 @@
  */
 require_once "db_connect.php";
 
-if($_POST['id']) {
+if($_POST['id']) {// Codigo que Constroi o modal passando o html existente nesse arquivo junto com os dados do Funcionario
     $sql = "SELECT * FROM funcionario WHERE id = {$_POST['id']}";
     $result = $connect->query($sql);
     if($result->num_rows > 0) {

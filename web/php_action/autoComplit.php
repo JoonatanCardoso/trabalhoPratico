@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 
 $arrayEmpresa = array();
 
-if(isset($_POST['name'])) {
+if(isset($_POST['name'])) {// Auto COmplete da Tela SUpervisor
     $sql = "SELECT * FROM funcionario WHERE  datademissao is null and nome LIKE \"%{$_POST['name']}%\"";
     $result = $connect->query($sql);
 

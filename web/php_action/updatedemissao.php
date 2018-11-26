@@ -2,7 +2,7 @@
 
 require_once 'db_connect.php';
 
-if($_POST) {
+if($_POST) {//altera o status do funcionario , simulando a demissao do mesmo
 
     $dataDemissao = $_POST['dataDemissao'];
 

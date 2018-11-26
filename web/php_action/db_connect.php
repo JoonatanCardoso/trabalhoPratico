@@ -1,5 +1,5 @@
 <?php
-
+//php de configuracao do banco Web
 $localhost = "127.0.0.1";
 $username = "root";
 $password = "";
