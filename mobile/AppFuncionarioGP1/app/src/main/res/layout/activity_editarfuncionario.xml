@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Telas.EditarFuncionario">
+
+    <Button
+        android:id="@+id/btExcluir"
+        android:layout_width="103dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="Excluir"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btSalvar"
+        android:layout_width="126dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Salvar"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btSair"
+        android:layout_width="129dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="acaoSair"
+        android:text="Sair"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btExcluir"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toEndOf="@+id/btSalvar" />
+
+    <TextView
+        android:id="@+id/tvNome"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:text="Nome"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/etNome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
+        android:text="                          Editar Funcionario"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etNome"
+        android:layout_width="350dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/tvRg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNome" />
+
+    <EditText
+        android:id="@+id/etRg"
+        android:layout_width="350dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/tvCpf"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRg" />
+
+    <TextView
+        android:id="@+id/tvCpf"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:text="Cpf"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/etCpf"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etRg" />
+
+    <EditText
+        android:id="@+id/etCpf"
+        android:layout_width="350dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/tvEndereco"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCpf" />
+
+    <TextView
+        android:id="@+id/tvRg"
+        android:layout_width="348dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="16dp"
+        android:text="Rg"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/etRg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNome" />
+
+    <TextView
+        android:id="@+id/tvEndereco"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:text="Endereco"
+        app:layout_constraintBottom_toTopOf="@+id/etEndereco"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCpf" />
+
+    <EditText
+        android:id="@+id/etEndereco"
+        android:layout_width="350dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/tvCargo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEndereco" />
+
+    <TextView
+        android:id="@+id/tvCargo"
+        android:layout_width="350dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:text="Cargo"
+        app:layout_constraintBottom_toTopOf="@+id/etCargo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEndereco" />
+
+    <EditText
+        android:id="@+id/etCargo"
+        android:layout_width="350dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCargo" />
+
+</android.support.constraint.ConstraintLayout>
