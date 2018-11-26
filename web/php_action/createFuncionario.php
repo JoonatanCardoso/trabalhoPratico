@@ -2,7 +2,7 @@
 
 require_once 'db_connect.php';
 
-if($_POST) {
+if($_POST) {// php de inserção de dados do funcionario
     $cpf = $_POST['cpf'];
     $rg = $_POST['rg'];
     $nome = $_POST['nome'];
@@ -19,7 +19,7 @@ if($_POST) {
     }
 
     $connect->close();
-    header("Location:../FuncionarioSupervisor.php");
+    header("Location:../FuncionarioSupervisor.php");// retorana para A Tela funcionario Supervisor
    /* if($senha == $confsenha ){
 
     }else {

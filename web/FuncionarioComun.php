@@ -48,7 +48,7 @@
 
 
   <div class="container center">
-
+<!-- Auto complete-->
       <form class="col s12">
           <div class="row">
               <div class="input-field col s10 offset-s1 ">
@@ -190,7 +190,7 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script>
-      $('.botaover').click(function (){
+      $('.botaover').click(function (){//script de visualizar atraves de um botao
           console.log($(this).data('id'));
           $.ajax({
               method: "POST",
@@ -205,7 +205,7 @@
 
           });
       });
-      $(document).ready(function(){
+      $(document).ready(function(){//auto cromplete script
           $('.search').keyup(function () {
               console.log(this.value);
               $.ajax({

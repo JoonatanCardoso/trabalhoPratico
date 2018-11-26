@@ -12,6 +12,7 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
   <style>
+      /*tag para scroll da tabela*/
       .scrollss{
           overflow-y: auto;
           height: 440px;
@@ -46,6 +47,7 @@
 
   <div class="container center">
 
+      <!-- AutoCOmplete com ajax e metodo post php-->
       <form class="col s12">
           <div class="row">
               <div class="input-field col s7 offset-s2 ">
@@ -77,7 +79,7 @@
           <th></th>
         </tr>
         </thead>
-
+ <!-- Tabela com scroll e filtragem com php , chamando todos os funcionarios-->
         <tbody class="scrollss tableAuto">
         <?php
         $sql = "SELECT * FROM funcionario WHERE datademissao is null";
@@ -103,7 +105,7 @@
     </div>
     <br><br>
   </div>
-
+<!-- MOdal de Cadastro , Editar , e Demitir-->
   <!-- Modal Structure -->
    <div id="modalCadastro" class="modal ">
      <div class="modal-content center">
@@ -322,7 +324,7 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script>
-      $('.botaover').click(function (){
+      $('.botaover').click(function (){//Script usado para chamar um modal de vizualizacao
           console.log($(this).data('id'));
           $.ajax({
               method: "POST",
@@ -338,7 +340,7 @@
           });
       });
 
-      $('.botaoedit').click(function (){
+      $('.botaoedit').click(function (){//Script usado para chamar um modal de editar
           console.log($(this).data('id'));
           $.ajax({
               method: "POST",
@@ -355,7 +357,7 @@
       });
 
 
-      $('.botaodemitir').click(function (){
+      $('.botaodemitir').click(function (){//Script usado para chamar um modal de demitir
           console.log($(this).data('id'));
           $.ajax({
               method: "POST",
@@ -372,7 +374,7 @@
       });
 
 
-      $(document).ready(function(){
+      $(document).ready(function(){//Auto complete , esse script pega as tecladas que sao digitas e busca os funcionarios pelo nome
           $('.search').keyup(function () {
               console.log(this.value);
               $.ajax({

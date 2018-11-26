@@ -1,7 +1,7 @@
 <?php
 
 require_once 'db_connect.php';
-var_dump($_POST);
+var_dump($_POST);//atualizar os dados do funcionario no banco
 if($_POST['id']) {
     $cpf = $_POST['cpf'];
     $rg = $_POST['rg'];

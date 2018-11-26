@@ -1,5 +1,5 @@
 <?php
-
+//Codigo de teste , nao esta sendo utilizado nessa aplicacao 
 require_once 'db_connect.php';
 
 if($_POST) {
